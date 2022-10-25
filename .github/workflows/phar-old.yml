@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
         with:
           fetch-depth: 0
 
@@ -49,7 +49,7 @@ jobs:
         run: echo ::set-output name=log::$(git log ${{ github.event.before }}..${{ github.event.after }} --reverse --pretty='%H %s' | sed -e 's/^/https:\/\/github.com\/phpstan\/phpstan-src\/commit\//')
 
       - name: "Checkout phpstan-dist"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
         with:
           repository: phpstan/phpstan
           ref: 0.12.x
