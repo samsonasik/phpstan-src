@@ -43,7 +43,7 @@ jobs:
           php bin/compile && \
           ../tmp/phpstan.phar list
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: phpstan.phar
           path: tmp/phpstan.phar
