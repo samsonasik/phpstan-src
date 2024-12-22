@@ -3,6 +3,7 @@
 namespace PHPStan\Node\Printer;
 
 use PhpParser\Node\Expr;
+use PHPStan\Node\MethodCallableNode;
 
 /**
  * @api
@@ -19,6 +20,9 @@ final class ExprPrinter
 		/** @var string|null $exprString */
 		$exprString = $expr->getAttribute('phpstan_cache_printer');
 		if ($exprString === null) {
+			if ($expr instanceof MethodCallableNode) {
+				$expr = $expr->getOriginalNode();
+			}
 			$exprString = $this->printer->prettyPrintExpr($expr);
 			$expr->setAttribute('phpstan_cache_printer', $exprString);
 		}
