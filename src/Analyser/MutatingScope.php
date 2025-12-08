@@ -4287,7 +4287,12 @@ final class MutatingScope implements Scope, NodeCallbackInvoker
 		);
 
 		if ($expr instanceof AlwaysRememberedExpr) {
-			return $scope->specifyExpressionType($expr->expr, $type, $nativeType, $certainty);
+			$expressionType =  $scope->specifyExpressionType($expr->expr, $type, $nativeType, $certainty);
+
+			// ensure AlwaysRememberedExpr extracted after used
+			$expr = $expr->expr;
+
+			return $expressionType;
 		}
 
 		return $scope;
